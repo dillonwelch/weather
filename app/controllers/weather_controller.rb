@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "net/http"
 require "services/geocoding_service"
 require "services/weather_service"

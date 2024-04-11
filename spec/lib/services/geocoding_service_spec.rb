@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "services/geocoding_service"
 
 RSpec.describe GeocodingService do

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "services/weather_service"
 
 RSpec.describe WeatherService do
