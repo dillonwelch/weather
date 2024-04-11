@@ -14,15 +14,31 @@
   <%= form.submit "Search" %>
 <% end %>
 
-params:
-<%= params[:street] %>
-Temps:
-</br>
-<% (@temps || []).each do |temp| %>
-  Location: <%= temp[:coords] %>
+<% if @temps %>
+  Results:
   </br>
-  Time: <%= temp[:time] %>
-  </br>
-  Current temp is: <%= temp[:current_temp] %> with a low of <%= temp[:low_temp] %> and a high of <%= temp[:high_temp] %>
-  </br>
+  <% (@temps || []).each do |temp| %>
+    Latitude: <%= temp[:lat] %>
+    </br>
+    Longitude: <%= temp[:lon] %>
+    </br>
+    Current temp is: <%= temp[:current][:current_temp] %> with a low of <%= temp[:current][:low_temp] %> and a high of <%= temp[:current][:high_temp] %>
+    </br>
+    <table>
+      <tr>
+        <th>Time</th>
+        <th>Temp</th>
+        <th>Low</th>
+        <th>High</th>
+      </tr>
+      <% temp[:extended].each do |extended_temp| %>
+        <tr>
+          <th><%= extended_temp[:time] %></th>
+          <th><%= extended_temp[:current_temp] %></th>
+          <th><%= extended_temp[:low_temp] %></th>
+          <th><%= extended_temp[:high_temp] %></th>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
 <% end %>

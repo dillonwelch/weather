@@ -32,13 +32,16 @@ class WeatherController < ApplicationController
 
     @temps = []
     coords.each do |coord|
+      temp_data = { lat: coord["y"], lon: coord["x"] }
       query = URI::HTTPS.build(
         host: "api.openweathermap.org",
         path: "/data/2.5/weather",
         query: { lat: coord["y"], lon: coord["x"], appid: ENV['OPEN_WEATHER_API_KEY'], units: "imperial"}.to_query,
       )
       resp = JSON.parse(Net::HTTP.get(query))["main"]
-      @temps << { coords: coord, current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"]}
+      temp_data[:current] = { current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"]}
+      temp_data[:extended] = []
+
       query = URI::HTTPS.build(
         host: "api.openweathermap.org",
         path: "/data/2.5/forecast",
@@ -47,8 +50,10 @@ class WeatherController < ApplicationController
       resps = JSON.parse(Net::HTTP.get(query))["list"]
       resps.each do |bleh|
         resp = bleh["main"]
-        @temps <<{ coords: coord, current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"], time: bleh["dt_txt"]}
+        temp_data[:extended] << { current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"], time: bleh["dt_txt"]}
       end
+
+      @temps << temp_data
     end
 
     # weather = client.current_weather(units: "imperial", zip: params[:zip])["main"]
