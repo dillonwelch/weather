@@ -29,19 +29,16 @@
       </br>
       Current temp is: <%= temp["current"]["current_temp"] %> with a low of <%= temp["current"]["low_temp"] %> and a high of <%= temp["current"]["high_temp"] %>
       </br>
+      Weather Forecast:
       <table>
         <tr>
           <th>Time (ISO UTC)</th>
           <th>Temp</th>
-          <th>Low</th>
-          <th>High</th>
         </tr>
         <% temp["extended"].each do |extended_temp| %>
           <tr>
             <th><%= extended_temp["time"] %></th>
             <th><%= extended_temp["current_temp"] %></th>
-            <th><%= extended_temp["low_temp"] %></th>
-            <th><%= extended_temp["high_temp"] %></th>
           </tr>
         <% end %>
       </table>

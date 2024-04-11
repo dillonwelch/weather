@@ -57,8 +57,6 @@ class WeatherService
     JSON.parse(Net::HTTP.get(query))["list"].map do |resp|
       {
         "current_temp" => resp["main"]["temp"],
-        "low_temp" => resp["main"]["temp_min"],
-        "high_temp" => resp["main"]["temp_max"],
         "time" => resp["dt_txt"]
       }
     end
