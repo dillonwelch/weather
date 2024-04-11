@@ -1,3 +1,5 @@
+require "net/http"
+
 class WeatherController < ApplicationController
   def index
   end
@@ -7,11 +9,9 @@ class WeatherController < ApplicationController
     # TODO: validate zip
     # TODO: options for units
     # TODO: dropdown for state
-    # TODO: remove gem
     # TODO: slash search redirect
-    client = OpenWeather::Client.new(
-      api_key: ENV['OPEN_WEATHER_API_KEY']
-    )
+    # TODO: no results
+    # TODO: error state
     base_url = "geocoding.geo.census.gov"
     base_path = "/geocoder/locations/address"
     query = URI::HTTPS.build(host: base_url, path: base_path, query: {
