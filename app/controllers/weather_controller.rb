@@ -1,4 +1,5 @@
 require "net/http"
+require "services/geocoding_service"
 
 class WeatherController < ApplicationController
   def index
@@ -6,23 +7,23 @@ class WeatherController < ApplicationController
 
   def search
     # TODO: docs
-    # TODO: validate zip
+    # TODO: validate zip / presence of values
     # TODO: options for units
     # TODO: dropdown for state
     # TODO: slash search redirect
     # TODO: no results
     # TODO: error state
+    # TODO: cleanup JS
+    # TODO: cleanup CSS
+    # TODO: caching
     base_url = "geocoding.geo.census.gov"
     base_path = "/geocoder/locations/address"
-    query = URI::HTTPS.build(host: base_url, path: base_path, query: {
+    resp = GeocodingService.new(
       street: params[:street],
       city: params[:city],
       state: params[:state],
-      zip: params[:zip],
-      benchmark: 2020,
-      format: "json"
-    }.to_query)
-    resp = JSON.parse(Net::HTTP.get(query))
+      zip: params[:zip]
+    ).query
     puts resp
     results = resp["result"]["addressMatches"]
     coords = []
