@@ -8,7 +8,6 @@ require 'services/weather_service'
 class WeatherController < ApplicationController
   def search
     # TODO: docs in README.md
-    # TODO: caching
     # TODO: error not clearing out (not resubmitting?)
 
     if valid_search_params?
@@ -27,7 +26,7 @@ class WeatherController < ApplicationController
   end
 
   def fetch_weather_data
-    @temps = coordinates.map do |coordinate|
+    @temps = coordinates['result'].map do |coordinate|
       weather_service = WeatherService.new(
         latitude: coordinate['latitude'], longitude: coordinate['longitude'], units: params[:units]
       )
@@ -37,10 +36,11 @@ class WeatherController < ApplicationController
         'current' => weather_service.current_weather, 'extended' => weather_service.weather_forecast
       }
     end
+    @cached = coordinates['cached']
   end
 
   def coordinates
-    GeocodingService.new(
+    @coordinates ||= GeocodingService.new(
       street: params[:street], city: params[:city], state: params[:state], zip: params[:zip]
     ).coordinates
   end

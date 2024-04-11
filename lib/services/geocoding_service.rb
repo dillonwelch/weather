@@ -14,6 +14,7 @@ class GeocodingService
     @city = city
     @state = state
     @zip = zip
+    @cached = true
   end
 
   # Queries the API to determine the coordinates.
@@ -22,17 +23,18 @@ class GeocodingService
   # @return [Array<Hash<String, Float>>, Array] List of coordinates with keys for longitude and latitude,
   #   or an empty array if no results were found.
   def coordinates
-    Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+    result = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+      @cached = false
       query = URI::HTTPS.build(
-        host: BASE_URL,
-        path: BASE_PATH,
-        query: query_params
+        host: BASE_URL, path: BASE_PATH, query: query_params
       )
 
-      JSON.parse(Net::HTTP.get(query))['result']['addressMatches'].map do |result|
-        { 'latitude' => result['coordinates']['y'], 'longitude' => result['coordinates']['x'] }
+      JSON.parse(Net::HTTP.get(query))['result']['addressMatches'].map do |response|
+        { 'latitude' => response['coordinates']['y'], 'longitude' => response['coordinates']['x'] }
       end
     end
+
+    { 'result' => result, 'cached' => @cached }
   end
 
   private
