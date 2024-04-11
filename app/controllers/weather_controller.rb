@@ -16,20 +16,13 @@ class WeatherController < ApplicationController
     # TODO: cleanup JS
     # TODO: cleanup CSS
     # TODO: caching
-    base_url = "geocoding.geo.census.gov"
-    base_path = "/geocoder/locations/address"
-    resp = GeocodingService.new(
+
+    coords = GeocodingService.new(
       street: params[:street],
       city: params[:city],
       state: params[:state],
       zip: params[:zip]
-    ).query
-    puts resp
-    results = resp["result"]["addressMatches"]
-    coords = []
-    results.each do |result|
-      coords << result["coordinates"] # TODO: use fancy map
-    end
+    ).coordinates
 
     @temps = []
     coords.each do |coord|

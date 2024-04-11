@@ -11,7 +11,7 @@ class GeocodingService
     @zip = zip
   end
 
-  def query
+  def coordinates
     query = URI::HTTPS.build(
       host: BASE_URL,
       path: BASE_PATH,
@@ -24,6 +24,12 @@ class GeocodingService
         format: "json"
       }.to_query
     )
-    JSON.parse(Net::HTTP.get(query))
+    resp = JSON.parse(Net::HTTP.get(query))
+    results = resp["result"]["addressMatches"]
+    coords = []
+    results.each do |result|
+      coords << result["coordinates"] # TODO: use fancy map
+    end
+    coords
   end
 end
