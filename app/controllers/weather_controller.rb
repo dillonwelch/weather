@@ -21,7 +21,13 @@ class WeatherController < ApplicationController
       benchmark: 2020,
       format: "json"
     }.to_query)
-    puts Net::HTTP.get(query)
+    resp = JSON.parse(Net::HTTP.get(query))
+    results = resp["result"]["addressMatches"]
+    coords = []
+    results.each do |result|
+      coords << result["coordinates"] # TODO: use fancy map
+    end
+    puts coords
     # weather = client.current_weather(units: "imperial", zip: params[:zip])["main"]
     # @current_temp = weather["temp"]
     # @low_temp = weather["temp_min"]
