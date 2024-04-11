@@ -4,7 +4,7 @@ require "services/weather_service"
 RSpec.describe WeatherService do
   describe "#current_weather" do
     describe "happy path" do
-      it "fetches the current weather for a coordinate" do
+      it "fetches the current weather for a coordinate in fahrenheit" do
         VCR.use_cassette "weather_service/current_weather/happy_path_fahrenheit", allow_unused_http_interactions: false, record: :new_episodes do
           result = WeatherService.new(
             latitude: 40.74865337901453,
@@ -59,7 +59,7 @@ RSpec.describe WeatherService do
 
   describe "#weather_forecast" do
     describe "happy path" do
-      it "fetches the weather forecast or a coordinate" do
+      it "fetches the weather forecast or a coordinate in fahrenheit" do
         VCR.use_cassette "weather_service/weather_forecast/happy_path_fahrenheit", allow_unused_http_interactions: false, record: :new_episodes do
           result = WeatherService.new(
             latitude: 40.74865337901453,
