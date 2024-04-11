@@ -4,7 +4,7 @@ require "services/geocoding_service"
 RSpec.describe GeocodingService do
   describe "#coordinates" do
     it "fetches coordinates for an address" do
-      VCR.use_cassette "geocoding_service/happy_path", record: :new_episodes do
+      VCR.use_cassette "geocoding_service/happy_path", allow_unused_http_interactions: false, record: :new_episodes do
         coords = GeocodingService.new(
           street: "20 W 34th St.",
           city: "New York",
