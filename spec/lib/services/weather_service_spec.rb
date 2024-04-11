@@ -12,7 +12,7 @@ RSpec.describe WeatherService do
             units: "fahrenheit"
           ).current_weather
 
-          expect(result).to eql({ "current_temp" => 50.18, "low_temp" => 47.25, "high_temp" => 52.99 })
+          expect(result).to eql({ "current_temp" => 50.05, "high_temp" => 52.97, "low_temp" => 47.77 })
         end
       end
 
@@ -24,7 +24,7 @@ RSpec.describe WeatherService do
             units: "celsius"
           ).current_weather
 
-          expect(result).to eql({ "current_temp" => 10.09, "low_temp" => 8.46, "high_temp" => 11.65 })
+          expect(result).to eql({ "current_temp" => 10.03, "high_temp" => 11.65, "low_temp" => 8.76 })
         end
       end
 
@@ -36,25 +36,10 @@ RSpec.describe WeatherService do
             units: "kelvin"
           ).current_weather
 
-          expect(result).to eql({ "current_temp" => 283.19, "low_temp" => 281.61, "high_temp" => 284.8 })
+          expect(result).to eql({ "current_temp" => 283.18, "high_temp" => 284.8, "low_temp" => 281.91 })
         end
       end
     end
-
-    # describe "missing address" do
-    #   it "returns an empty array" do
-    #     VCR.use_cassette "weather_service/missing_address", allow_unused_http_interactions: false, record: :new_episodes do
-    #       coords = WeatherService.new(
-    #         street: "I do not exist",
-    #         city: "New York",
-    #         state: "NY",
-    #         zip: "12345"
-    #       ).coordinates
-    #
-    #       expect(coords).to match_array []
-    #     end
-    #   end
-    # end
   end
 
   describe "#weather_forecast" do
@@ -67,12 +52,8 @@ RSpec.describe WeatherService do
             units: "fahrenheit"
           ).weather_forecast
 
-          expect(result.first).to eql(
-            "current_temp" => 50.13, "low_temp" => 50.13, "high_temp" => 52.97, "time" => "2024-04-11 09:00:00"
-          )
-          expect(result.last).to eql(
-            "current_temp" => 56.12, "low_temp" => 56.12, "high_temp" => 56.12, "time" => "2024-04-16 06:00:00"
-          )
+          expect(result.first).to eql( "current_temp" => 51.1, "time" => "2024-04-11 12:00:00" )
+          expect(result.last).to eql( "current_temp" => 55.04, "time" => "2024-04-16 09:00:00" )
           expect(result.length).to eql 40
         end
       end
@@ -85,12 +66,8 @@ RSpec.describe WeatherService do
             units: "celsius"
           ).weather_forecast
 
-          expect(result.first).to eql(
-            "current_temp" => 10.07, "low_temp" => 10.07, "high_temp" => 11.65, "time" => "2024-04-11 09:00:00"
-          )
-          expect(result.last).to eql(
-            "current_temp" => 13.4, "low_temp" =>  13.4, "high_temp" => 13.4, "time" => "2024-04-16 06:00:00"
-          )
+          expect(result.first).to eql("current_temp" => 10.61,  "time" => "2024-04-11 12:00:00")
+          expect(result.last).to eql("current_temp" => 12.8, "time" => "2024-04-16 09:00:00")
           expect(result.length).to eql 40
         end
       end
@@ -103,12 +80,8 @@ RSpec.describe WeatherService do
             units: "kelvin"
           ).weather_forecast
 
-          expect(result.first).to eql(
-            "current_temp" => 283.22, "low_temp" => 283.22, "high_temp" => 284.8, "time" => "2024-04-11 09:00:00"
-          )
-          expect(result.last).to eql(
-            "current_temp" => 286.55, "low_temp" =>  286.55, "high_temp" => 286.55, "time" => "2024-04-16 06:00:00"
-          )
+          expect(result.first).to eql("current_temp" => 283.76, "time" => "2024-04-11 12:00:00")
+          expect(result.last).to eql("current_temp" => 285.95, "time" => "2024-04-16 09:00:00")
           expect(result.length).to eql 40
         end
       end
