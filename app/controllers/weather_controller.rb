@@ -6,14 +6,25 @@ class WeatherController < ApplicationController
     # TODO: docs
     # TODO: validate zip
     # TODO: options for units
+    # TODO: dropdown for state
     puts params
     client = OpenWeather::Client.new(
       api_key: ENV['OPEN_WEATHER_API_KEY']
     )
-    weather = client.current_weather(units: "imperial", zip: params[:zip])["main"]
-    @current_temp = weather["temp"]
-    @low_temp = weather["temp_min"]
-    @high_temp = weather["temp_max"]
+    base_url = "geocoding.geo.census.gov"
+    base_path = "/geocoder/locations/address"
+    puts URI::HTTPS.build(host: base_url, path: base_path, query: {
+      street: params[:street],
+      city: params[:city],
+      state: params[:state],
+      zip: params[:zip],
+      benchmark: 2020,
+      format: "json"
+    }.to_query).to_s
+    # weather = client.current_weather(units: "imperial", zip: params[:zip])["main"]
+    # @current_temp = weather["temp"]
+    # @low_temp = weather["temp_min"]
+    # @high_temp = weather["temp_max"]
     render "index"
   end
 end
