@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class GeocodingService
   BASE_URL = "geocoding.geo.census.gov"
   BASE_PATH = "/geocoder/locations/address"
