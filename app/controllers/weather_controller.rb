@@ -1,5 +1,6 @@
 require "net/http"
 require "services/geocoding_service"
+require "services/weather_service"
 
 class WeatherController < ApplicationController
   def index
@@ -27,12 +28,8 @@ class WeatherController < ApplicationController
     @temps = []
     coords.each do |coord|
       temp_data = { lat: coord["y"], lon: coord["x"] }
-      query = URI::HTTPS.build(
-        host: "api.openweathermap.org",
-        path: "/data/2.5/weather",
-        query: { lat: coord["y"], lon: coord["x"], appid: ENV['OPEN_WEATHER_API_KEY'], units: "imperial"}.to_query,
-      )
-      resp = JSON.parse(Net::HTTP.get(query))["main"]
+
+      resp = WeatherService.new(latitude: coord["y"], longitude: coord["x"]).current_weather
       temp_data[:current] = { current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"]}
       temp_data[:extended] = []
 
