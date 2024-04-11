@@ -8,8 +8,9 @@ class WeatherController < ApplicationController
     #
     # TODO: caching
     # TODO: integration test
-    # TODO: token leak in VCR files
+    # TODO: update token locally and disable old one
     # TODO: rubocop
+    # TODO: Cleanup and document gems
 
     if params[:zip].present? || (params[:city].present? && params[:state].present?)
       coordinates = GeocodingService.new(
