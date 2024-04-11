@@ -25,8 +25,7 @@ class WeatherController < ApplicationController
       zip: params[:zip]
     ).coordinates
 
-    @temps = [] # TODO: only assume one?
-    coords.each do |coord|
+    @temps = coords.map do |coord|
       temp_data = { lat: coord["latitude"], lon: coord["longitude"] } # TODO: rename
 
       weather_service = WeatherService.new(latitude: coord["latitude"], longitude: coord["longitude"])
@@ -34,7 +33,7 @@ class WeatherController < ApplicationController
       temp_data["current"] = weather_service.current_weather
       temp_data["extended"] = weather_service.weather_forecast # TODO: rename from extended
 
-      @temps << temp_data
+      temp_data
     end
 
     render "index"
