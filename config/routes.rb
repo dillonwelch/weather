@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'weather#index'
 
-  post 'search', to: 'weather#search'
+  get 'search', to: 'weather#search'
 end
