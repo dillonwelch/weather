@@ -23,4 +23,18 @@ class WeatherService
     )
     JSON.parse(Net::HTTP.get(query))["main"]
   end
+
+  def weather_forecast
+    query = URI::HTTPS.build(
+      host: BASE_URL,
+      path: WEATHER_FORECAST_PATH,
+      query: {
+        lat: @latitude,
+        lon: @longitude,
+        appid: ENV['OPEN_WEATHER_API_KEY'],
+        units: "imperial"
+      }.to_query
+    )
+    JSON.parse(Net::HTTP.get(query))["list"]
+  end
 end
