@@ -17,21 +17,19 @@ class WeatherService
     @latitude = latitude
     @longitude = longitude
     @units = units
+    @query_params = {
+      lat: @latitude,
+      lon: @longitude,
+      appid: ENV.fetch('OPEN_WEATHER_API_KEY', nil),
+      units: UNITS_MAPPING[@units]
+    }.to_query
   end
 
   # Queries the API to determine the current weather.
   # @return [Hash] Current weather data.
   def current_weather
-    query = URI::HTTPS.build(
-      host: BASE_URL,
-      path: CURRENT_WEATHER_PATH,
-      query: {
-        lat: @latitude,
-        lon: @longitude,
-        appid: ENV.fetch('OPEN_WEATHER_API_KEY', nil),
-        units: UNITS_MAPPING[@units]
-      }.to_query
-    )
+    query = URI::HTTPS.build(host: BASE_URL, path: CURRENT_WEATHER_PATH, query: @query_params)
+
     resp = JSON.parse(Net::HTTP.get(query))['main']
     {
       'current_temp' => resp['temp'],
@@ -43,16 +41,7 @@ class WeatherService
   # Queries the API to determine the weather forecast for the next 5 days.
   # @return [Array<Hash>] Weather data in 3 hour increments for the next 5 days.
   def weather_forecast
-    query = URI::HTTPS.build(
-      host: BASE_URL,
-      path: WEATHER_FORECAST_PATH,
-      query: {
-        lat: @latitude,
-        lon: @longitude,
-        appid: ENV.fetch('OPEN_WEATHER_API_KEY', nil),
-        units: UNITS_MAPPING[@units]
-      }.to_query
-    )
+    query = URI::HTTPS.build(host: BASE_URL, path: WEATHER_FORECAST_PATH, query: @query_params)
 
     JSON.parse(Net::HTTP.get(query))['list'].map do |resp|
       {
