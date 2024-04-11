@@ -31,16 +31,8 @@ class WeatherController < ApplicationController
 
       weather_service = WeatherService.new(latitude: coord["latitude"], longitude: coord["longitude"])
 
-      resp = weather_service.current_weather
-      # TODO: move mapping to service
-      temp_data["current"] = resp
-      temp_data[:extended] = []
-
-      resps = weather_service.weather_forecast
-      resps.each do |bleh|
-        resp = bleh["main"]
-        temp_data[:extended] << { current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"], time: bleh["dt_txt"]}
-      end
+      temp_data["current"] = weather_service.current_weather
+      temp_data["extended"] = weather_service.weather_forecast # TODO: rename from extended
 
       @temps << temp_data
     end

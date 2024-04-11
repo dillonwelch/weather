@@ -31,12 +31,12 @@
         <th>Low</th>
         <th>High</th>
       </tr>
-      <% temp[:extended].each do |extended_temp| %>
+      <% temp["extended"].each do |extended_temp| %>
         <tr>
-          <th><%= extended_temp[:time] %></th>
-          <th><%= extended_temp[:current_temp] %></th>
-          <th><%= extended_temp[:low_temp] %></th>
-          <th><%= extended_temp[:high_temp] %></th>
+          <th><%= extended_temp["time"] %></th>
+          <th><%= extended_temp["current_temp"] %></th>
+          <th><%= extended_temp["low_temp"] %></th>
+          <th><%= extended_temp["high_temp"] %></th>
         </tr>
       <% end %>
     </table>
