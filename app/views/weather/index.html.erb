@@ -1,3 +1,8 @@
+<% flash.each do |type, msg| %>
+  <marquee style="background-color:black;color:white"><%= type.upcase %>: <%= msg %></marquee>
+  </br
+<% end %>
+
 <%= form_with url: "/search" do |form| %>
   <%= form.label :street %>
   <%= form.text_field :street, { value: params[:street] } %>

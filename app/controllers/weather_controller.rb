@@ -37,6 +37,7 @@ class WeatherController < ApplicationController
       }
     end
 
+    flash.now[:error] = "OH NO MELON"
     render "index"
   end
 end
