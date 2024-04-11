@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 
+# Uses the OpenWeatherMap API to fetch either the current weather or the forecasted weather for a set of coordinates.
 class WeatherService
   BASE_URL = "api.openweathermap.org"
   CURRENT_WEATHER_PATH = "/data/2.5/weather"
   WEATHER_FORECAST_PATH = "/data/2.5/forecast"
 
+  # @param latitude [Float] Latitude value of the coordinate.
+  # @param longitude [Float] Longitude value of the coordinate.
   def initialize(latitude:, longitude:)
     @latitude = latitude
     @longitude = longitude
   end
 
+  # Queries the API to determine the current weather.
+  # @return [Hash] Current weather data.
   def current_weather
     query = URI::HTTPS.build(
       host: BASE_URL,
@@ -24,6 +29,8 @@ class WeatherService
     JSON.parse(Net::HTTP.get(query))["main"]
   end
 
+  # Queries the API to determine the weather forecast for the next 5 days.
+  # @return [Array<Hash>] Weather data in 3 hour increments for the next 5 days.
   def weather_forecast
     query = URI::HTTPS.build(
       host: BASE_URL,

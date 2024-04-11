@@ -27,11 +27,12 @@ class WeatherController < ApplicationController
 
     @temps = [] # TODO: only assume one?
     coords.each do |coord|
-      temp_data = { lat: coord["y"], lon: coord["x"] }
+      temp_data = { lat: coord["latitude"], lon: coord["longitude"] }
 
-      weather_service = WeatherService.new(latitude: coord["y"], longitude: coord["x"])
+      weather_service = WeatherService.new(latitude: coord["latitude"], longitude: coord["longitude"])
 
       resp = weather_service.current_weather
+      # TODO: move mapping to service
       temp_data[:current] = { current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"]}
       temp_data[:extended] = []
 

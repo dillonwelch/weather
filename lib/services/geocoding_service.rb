@@ -19,7 +19,7 @@ class GeocodingService
   # Queries the API to determine the coordinates.
   # @example Coordinates for the Empire State Building.
   #   [{ "longitude" => -73.98524258380219, "latitude" => 40.74865337901453 }]
-  # @return [Array<Hash<String, Numeric>>, Array] List of coordinates with keys for longitude and latitude,
+  # @return [Array<Hash<String, Float>>, Array] List of coordinates with keys for longitude and latitude,
   #   or an empty array if no results were found.
   def coordinates
     query = URI::HTTPS.build(
