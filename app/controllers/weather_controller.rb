@@ -18,22 +18,22 @@ class WeatherController < ApplicationController
     # TODO: cleanup CSS
     # TODO: caching
 
-    coords = GeocodingService.new(
+    coordinates = GeocodingService.new(
       street: params[:street],
       city: params[:city],
       state: params[:state],
       zip: params[:zip]
     ).coordinates
 
-    @temps = coords.map do |coord|
-      temp_data = { lat: coord["latitude"], lon: coord["longitude"] } # TODO: rename
+    @temps = coordinates.map do |coordinate|
+      weather_service = WeatherService.new(latitude: coordinate["latitude"], longitude: coordinate["longitude"])
 
-      weather_service = WeatherService.new(latitude: coord["latitude"], longitude: coord["longitude"])
-
-      temp_data["current"] = weather_service.current_weather
-      temp_data["extended"] = weather_service.weather_forecast # TODO: rename from extended
-
-      temp_data
+      {
+        "latitude" => coordinate["latitude"],
+        "longitude" => coordinate["longitude"],
+        "current" => weather_service.current_weather,
+        "extended" => weather_service.weather_forecast
+      }
     end
 
     render "index"

@@ -18,9 +18,9 @@
   Results:
   </br>
   <% (@temps || []).each do |temp| %>
-    Latitude: <%= temp[:lat] %>
+    Latitude: <%= temp["latitude"] %>
     </br>
-    Longitude: <%= temp[:lon] %>
+    Longitude: <%= temp["longitude"] %>
     </br>
     Current temp is: <%= temp["current"]["current_temp"] %> with a low of <%= temp["current"]["low_temp"] %> and a high of <%= temp["current"]["high_temp"] %>
     </br>
