@@ -12,3 +12,9 @@ Metrics/BlockLength:
   Exclude:
     - config/**/*.rb
     - spec/**/*.rb
+
+RSpec/ExampleLength: # I prefer a little more wiggle room compared to the default.
+  Max: 20
+
+RSpec/MultipleExpectations: # I do my best to obey this but prefer to group by logical concepts when there is conflict.
+  Enabled: false
