@@ -3,3 +3,8 @@ require:
 
 AllCops:
   NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*.rb
+    - spec/**/*.rb

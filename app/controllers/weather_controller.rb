@@ -4,6 +4,7 @@ require 'net/http'
 require 'services/geocoding_service'
 require 'services/weather_service'
 
+# Controller for UI
 class WeatherController < ApplicationController
   def search
     # TODO: docs in README.md

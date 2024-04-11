@@ -16,6 +16,7 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'vcr'
+
 RSpec.configure do |config|
   # TODO: Make a config file
   VCR.configure do |vcr_config|
