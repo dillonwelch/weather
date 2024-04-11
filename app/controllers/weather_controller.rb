@@ -7,7 +7,6 @@ class WeatherController < ApplicationController
     # TODO: docs in README.md
     #
     # TODO: validate zip / presence of values
-    # TODO: options for units
     # TODO: error state
     # TODO: cleanup JS
     # TODO: cleanup CSS

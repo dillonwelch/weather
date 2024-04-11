@@ -94,6 +94,24 @@ RSpec.describe WeatherService do
           expect(result.length).to eql 40
         end
       end
+
+      it "fetches the weather forecast or a coordinate in kelvin" do
+        VCR.use_cassette "weather_service/weather_forecast/happy_path_kelvin", allow_unused_http_interactions: false, record: :new_episodes do
+          result = WeatherService.new(
+            latitude: 40.74865337901453,
+            longitude: -73.98524258380219,
+            units: "kelvin"
+          ).weather_forecast
+
+          expect(result.first).to eql(
+            "current_temp" => 283.22, "low_temp" => 283.22, "high_temp" => 284.8, "time" => "2024-04-11 09:00:00"
+          )
+          expect(result.last).to eql(
+            "current_temp" => 286.55, "low_temp" =>  286.55, "high_temp" => 286.55, "time" => "2024-04-16 06:00:00"
+          )
+          expect(result.length).to eql 40
+        end
+      end
     end
   end
 end
