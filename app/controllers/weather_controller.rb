@@ -28,6 +28,10 @@ class WeatherController < ApplicationController
       coords << result["coordinates"] # TODO: use fancy map
     end
     puts coords
+
+    query = URI::HTTPS.build(host: "api.openweathermap.org", path: "/data/2.5/weather", query: { lat: lat, lon: lon, appid: ENV['OPEN_
+WEATHER_API_KEY']}.to_query)
+
     # weather = client.current_weather(units: "imperial", zip: params[:zip])["main"]
     # @current_temp = weather["temp"]
     # @low_temp = weather["temp_min"]
