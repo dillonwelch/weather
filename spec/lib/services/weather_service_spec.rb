@@ -5,7 +5,7 @@ RSpec.describe WeatherService do
   describe "#current_weather" do
     describe "happy path" do
       it "fetches the current weather for a coordinate" do
-        VCR.use_cassette "weather_service/happy_path", allow_unused_http_interactions: false, record: :new_episodes do
+        VCR.use_cassette "weather_service/current_weather/happy_path", allow_unused_http_interactions: false, record: :new_episodes do
           result = WeatherService.new(
             latitude: 40.74865337901453,
             longitude: -73.98524258380219
