@@ -20,7 +20,7 @@
   <% if @temps.length.zero? %>
     No results :(
   <% else %>
-    Results:
+    Results (in <%= params[:units].capitalize %>):
     </br>
     <% @temps.each do |temp| %>
       Latitude: <%= temp["latitude"] %>
