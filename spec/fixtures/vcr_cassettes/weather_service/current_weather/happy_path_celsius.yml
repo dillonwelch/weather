@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=9816e0ed7a9c88ebbbc19e610983a109&lat=40.74865337901453&lon=-73.98524258380219&units=metric
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.openweathermap.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Thu, 11 Apr 2024 08:15:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '464'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?lat=40.75&lon=-73.99&units=metric"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":-73.9852,"lat":40.7487},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":10.09,"feels_like":9.37,"temp_min":8.46,"temp_max":11.65,"pressure":1016,"humidity":85},"visibility":8047,"wind":{"speed":6.69,"deg":40},"clouds":{"all":100},"dt":1712823305,"sys":{"type":2,"id":2083229,"country":"US","sunrise":1712830942,"sunset":1712878252},"timezone":-14400,"id":5106184,"name":"Weehawken","cod":200}'
+  recorded_at: Thu, 11 Apr 2024 08:15:05 GMT
+recorded_with: VCR 6.2.0

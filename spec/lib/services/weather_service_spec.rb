@@ -5,13 +5,26 @@ RSpec.describe WeatherService do
   describe "#current_weather" do
     describe "happy path" do
       it "fetches the current weather for a coordinate" do
-        VCR.use_cassette "weather_service/current_weather/happy_path", allow_unused_http_interactions: false, record: :new_episodes do
+        VCR.use_cassette "weather_service/current_weather/happy_path_fahrenheit", allow_unused_http_interactions: false, record: :new_episodes do
           result = WeatherService.new(
             latitude: 40.74865337901453,
-            longitude: -73.98524258380219
+            longitude: -73.98524258380219,
+            units: "fahrenheit"
           ).current_weather
 
-          expect(result).to eql({ "current_temp" => 50.36, "low_temp" => 46.87, "high_temp" => 53.46 })
+          expect(result).to eql({ "current_temp" => 50.18, "low_temp" => 47.25, "high_temp" => 52.99 })
+        end
+      end
+
+      it "fetches the current weather for a coordinate in celsius" do
+        VCR.use_cassette "weather_service/current_weather/happy_path_celsius", allow_unused_http_interactions: false, record: :new_episodes do
+          result = WeatherService.new(
+            latitude: 40.74865337901453,
+            longitude: -73.98524258380219,
+            units: "celsius"
+          ).current_weather
+
+          expect(result).to eql({ "current_temp" => 10.09, "low_temp" => 8.46, "high_temp" => 11.65 })
         end
       end
     end
@@ -38,7 +51,8 @@ RSpec.describe WeatherService do
         VCR.use_cassette "weather_service/weather_forecast/happy_path", allow_unused_http_interactions: false, record: :new_episodes do
           result = WeatherService.new(
             latitude: 40.74865337901453,
-            longitude: -73.98524258380219
+            longitude: -73.98524258380219,
+            units: "fahrenheit"
           ).weather_forecast
 
           expect(result.first).to eql(

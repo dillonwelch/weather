@@ -11,6 +11,8 @@
   <%= form.label :zip %>
   <%= form.text_field :zip, { value: params[:zip] } %>
   </br>
+  <%= form.label :units %>
+  <%= form.select :units, { "Fahrenheit" => "fahrenheit", "Celsius" => "celsius", "Kelvin" => "kelvin" }, { selected: params[:units] } %>
   <%= form.submit "Search" %>
 <% end %>
 

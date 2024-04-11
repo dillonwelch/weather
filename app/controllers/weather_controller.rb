@@ -15,6 +15,7 @@ class WeatherController < ApplicationController
     # TODO: integration test
     # TODO: token leak in VCR files
     # TODO: rubocop
+    # TODO: rerecord all cassettes when done / set time const
 
     coordinates = GeocodingService.new(
       street: params[:street],
@@ -24,7 +25,11 @@ class WeatherController < ApplicationController
     ).coordinates
 
     @temps = coordinates.map do |coordinate|
-      weather_service = WeatherService.new(latitude: coordinate["latitude"], longitude: coordinate["longitude"])
+      weather_service = WeatherService.new(
+        latitude: coordinate["latitude"],
+        longitude: coordinate["longitude"],
+        units: params[:units]
+      )
 
       {
         "latitude" => coordinate["latitude"],

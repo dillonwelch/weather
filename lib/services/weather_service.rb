@@ -5,12 +5,18 @@ class WeatherService
   BASE_URL = "api.openweathermap.org"
   CURRENT_WEATHER_PATH = "/data/2.5/weather"
   WEATHER_FORECAST_PATH = "/data/2.5/forecast"
+  UNITS_MAPPING = {
+    "fahrenheit" => "imperial",
+    "celsius" => "metric",
+    "kelvin" => "standard"
+  }.freeze
 
   # @param latitude [Float] Latitude value of the coordinate.
   # @param longitude [Float] Longitude value of the coordinate.
-  def initialize(latitude:, longitude:)
+  def initialize(latitude:, longitude:, units:)
     @latitude = latitude
     @longitude = longitude
+    @units = units
   end
 
   # Queries the API to determine the current weather.
@@ -23,7 +29,7 @@ class WeatherService
         lat: @latitude,
         lon: @longitude,
         appid: ENV['OPEN_WEATHER_API_KEY'],
-        units: "imperial"
+        units: UNITS_MAPPING[@units]
       }.to_query
     )
     resp = JSON.parse(Net::HTTP.get(query))["main"]
@@ -44,9 +50,10 @@ class WeatherService
         lat: @latitude,
         lon: @longitude,
         appid: ENV['OPEN_WEATHER_API_KEY'],
-        units: "imperial"
+        units: UNITS_MAPPING[@units]
       }.to_query
     )
+
     JSON.parse(Net::HTTP.get(query))["list"].map do |resp|
       {
         "current_temp" => resp["main"]["temp"],
