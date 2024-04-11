@@ -21,7 +21,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Thu, 11 Apr 2024 06:32:23 GMT
+      - Thu, 11 Apr 2024 09:05:41 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -41,7 +41,7 @@ http_interactions:
       Vary:
       - Origin
       Set-Cookie:
-      - TS0193e6a1=01283c52a4caabfdf512419f2950b72d216a757f2287fe7423390566420276dced457e8cf9aed516d968faf5927322ac35bd0aacba;
+      - TS0193e6a1=01283c52a4da956b8f814ddc34863611d178f35cfaad8e7616988a2f6375edbc6a03f7b55b913fb1e790446c96be27b16d65ea5b54;
         Path=/; Domain=.geocoding.geo.census.gov;
     body:
       encoding: UTF-8
@@ -50,5 +50,5 @@ http_interactions:
         Address Ranges - Census 2020 Benchmark","id":"2020","benchmarkName":"Public_AR_Census2020"}},"addressMatches":[{"tigerLine":{"side":"L","tigerLineId":"59653429"},"coordinates":{"x":-73.98524258380219,"y":40.74865337901453},"addressComponents":{"zip":"10118","streetName":"34TH","preType":"","city":"NEW
         YORK","preDirection":"W","suffixDirection":"","fromAddress":"2","state":"NY","suffixType":"ST","toAddress":"98","suffixQualifier":"","preQualifier":""},"matchedAddress":"20
         W 34TH ST, NEW YORK, NY, 10118"}]}}'
-  recorded_at: Thu, 11 Apr 2024 06:32:23 GMT
+  recorded_at: Thu, 11 Apr 2024 09:05:41 GMT
 recorded_with: VCR 6.2.0

@@ -21,7 +21,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Thu, 11 Apr 2024 06:39:09 GMT
+      - Thu, 11 Apr 2024 09:05:42 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -41,12 +41,12 @@ http_interactions:
       Vary:
       - Origin
       Set-Cookie:
-      - TS0193e6a1=01283c52a4b4668fbec95cd793d9d1c6f5162ddbbbf5457fbe26e5d6bb79b0316965701d8a68061c3088ae4f4902344b87c8c5aa45;
+      - TS0193e6a1=01283c52a4e789a8f9b22867c4781c53320b628c84983965bd9870edc376a91544cf4f4f283690dc8b9dc7452a4b3fa6c802d717d7;
         Path=/; Domain=.geocoding.geo.census.gov;
     body:
       encoding: UTF-8
       string: '{"result":{"input":{"address":{"zip":"12345","city":"New York","street":"I
         do not exist","state":"NY"},"benchmark":{"isDefault":false,"benchmarkDescription":"Public
         Address Ranges - Census 2020 Benchmark","id":"2020","benchmarkName":"Public_AR_Census2020"}},"addressMatches":[]}}'
-  recorded_at: Thu, 11 Apr 2024 06:39:09 GMT
+  recorded_at: Thu, 11 Apr 2024 09:05:42 GMT
 recorded_with: VCR 6.2.0

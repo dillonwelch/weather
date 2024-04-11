@@ -20,6 +20,7 @@ RSpec.configure do |config|
   VCR.configure do |config|
     config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
     config.hook_into :webmock
+    config.filter_sensitive_data('TOKEN') { ENV['OPEN_WEATHER_API_KEY'] }
   end
 
   # rspec-expectations config goes here. You can use an alternate

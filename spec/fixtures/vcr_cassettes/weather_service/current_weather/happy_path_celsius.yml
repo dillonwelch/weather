@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.openweathermap.org/data/2.5/weather?appid=9816e0ed7a9c88ebbbc19e610983a109&lat=40.74865337901453&lon=-73.98524258380219&units=metric
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=TOKEN&lat=40.74865337901453&lon=-73.98524258380219&units=metric
     body:
       encoding: US-ASCII
       string: ''
@@ -23,11 +23,11 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Thu, 11 Apr 2024 08:15:05 GMT
+      - Thu, 11 Apr 2024 09:05:42 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '464'
+      - '477'
       Connection:
       - keep-alive
       X-Cache-Key:
@@ -40,6 +40,6 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"coord":{"lon":-73.9852,"lat":40.7487},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":10.09,"feels_like":9.37,"temp_min":8.46,"temp_max":11.65,"pressure":1016,"humidity":85},"visibility":8047,"wind":{"speed":6.69,"deg":40},"clouds":{"all":100},"dt":1712823305,"sys":{"type":2,"id":2083229,"country":"US","sunrise":1712830942,"sunset":1712878252},"timezone":-14400,"id":5106184,"name":"Weehawken","cod":200}'
-  recorded_at: Thu, 11 Apr 2024 08:15:05 GMT
+      string: '{"coord":{"lon":-73.9852,"lat":40.7487},"weather":[{"id":701,"main":"Mist","description":"mist","icon":"50n"}],"base":"stations","main":{"temp":10.03,"feels_like":9.33,"temp_min":8.76,"temp_max":11.65,"pressure":1016,"humidity":86},"visibility":10000,"wind":{"speed":5.81,"deg":56,"gust":9.39},"clouds":{"all":100},"dt":1712826133,"sys":{"type":2,"id":2083229,"country":"US","sunrise":1712830942,"sunset":1712878252},"timezone":-14400,"id":5106184,"name":"Weehawken","cod":200}'
+  recorded_at: Thu, 11 Apr 2024 09:05:43 GMT
 recorded_with: VCR 6.2.0
