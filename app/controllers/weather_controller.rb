@@ -6,14 +6,16 @@ require 'services/weather_service'
 
 # Controller for UI
 class WeatherController < ApplicationController
-  def search
+  def index
     # TODO: docs in README.md
     # TODO: error not clearing out (not resubmitting?)
 
-    if valid_search_params?
-      fetch_weather_data
-    else
-      flash.now[:error] = I18n.t('search_error')
+    if params.key?(:commit)
+      if valid_search_params?
+        fetch_weather_data
+      else
+        flash.now[:error] = I18n.t('search_error')
+      end
     end
 
     render 'index'
