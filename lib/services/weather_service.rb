@@ -28,7 +28,7 @@ class WeatherService
       query: {
         lat: @latitude,
         lon: @longitude,
-        appid: ENV['OPEN_WEATHER_API_KEY'],
+        appid: ENV.fetch('OPEN_WEATHER_API_KEY', nil),
         units: UNITS_MAPPING[@units]
       }.to_query
     )
@@ -49,7 +49,7 @@ class WeatherService
       query: {
         lat: @latitude,
         lon: @longitude,
-        appid: ENV['OPEN_WEATHER_API_KEY'],
+        appid: ENV.fetch('OPEN_WEATHER_API_KEY', nil),
         units: UNITS_MAPPING[@units]
       }.to_query
     )
