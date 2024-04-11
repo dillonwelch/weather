@@ -8,40 +8,43 @@ require 'services/weather_service'
 class WeatherController < ApplicationController
   def search
     # TODO: docs in README.md
-    #
     # TODO: caching
     # TODO: integration test
     # TODO: update token locally and disable old one
-    # TODO: rubocop for this controller
     # TODO: Cleanup and document gems
     # TODO: error not clearing out (not resubmitting?)
 
-    if params[:zip].present? || (params[:city].present? && params[:state].present?)
-      coordinates = GeocodingService.new(
-        street: params[:street],
-        city: params[:city],
-        state: params[:state],
-        zip: params[:zip]
-      ).coordinates
-
-      @temps = coordinates.map do |coordinate|
-        weather_service = WeatherService.new(
-          latitude: coordinate['latitude'],
-          longitude: coordinate['longitude'],
-          units: params[:units]
-        )
-
-        {
-          'latitude' => coordinate['latitude'],
-          'longitude' => coordinate['longitude'],
-          'current' => weather_service.current_weather,
-          'extended' => weather_service.weather_forecast
-        }
-      end
+    if valid_search_params?
+      fetch_weather_data
     else
-      flash.now[:error] = 'Either the ZIP Code or both City and State must be specified.'
+      flash.now[:error] = I18n.t('search_error')
     end
 
     render 'index'
+  end
+
+  private
+
+  def valid_search_params?
+    params[:zip].present? || (params[:city].present? && params[:state].present?)
+  end
+
+  def fetch_weather_data
+    @temps = coordinates.map do |coordinate|
+      weather_service = WeatherService.new(
+        latitude: coordinate['latitude'], longitude: coordinate['longitude'], units: params[:units]
+      )
+
+      {
+        'latitude' => coordinate['latitude'], 'longitude' => coordinate['longitude'],
+        'current' => weather_service.current_weather, 'extended' => weather_service.weather_forecast
+      }
+    end
+  end
+
+  def coordinates
+    GeocodingService.new(
+      street: params[:street], city: params[:city], state: params[:state], zip: params[:zip]
+    ).coordinates
   end
 end
