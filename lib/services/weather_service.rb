@@ -22,7 +22,7 @@ class WeatherService
   # Queries the API to determine the current weather.
   # @return [Hash] Current weather data.
   def current_weather
-    Rails.cache.fetch(cache_key) do
+    Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
       query = URI::HTTPS.build(host: BASE_URL, path: CURRENT_WEATHER_PATH, query: query_string)
 
       resp = JSON.parse(Net::HTTP.get(query))['main']

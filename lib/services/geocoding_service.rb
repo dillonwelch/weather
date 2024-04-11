@@ -22,7 +22,7 @@ class GeocodingService
   # @return [Array<Hash<String, Float>>, Array] List of coordinates with keys for longitude and latitude,
   #   or an empty array if no results were found.
   def coordinates
-    Rails.cache.fetch(cache_key) do
+    Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
       query = URI::HTTPS.build(
         host: BASE_URL,
         path: BASE_PATH,
