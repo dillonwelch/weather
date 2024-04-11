@@ -1,0 +1,18 @@
+<%= form_with do |form| %>
+  <%= form.label :line1, "Line 1" %>
+  <%= form.text_field :line1 %>
+  </br>
+  <%= form.label :line2, "Line 2" %>
+  <%= form.text_field :line2 %>
+  </br>
+  <%= form.label :city %>
+  <%= form.text_field :city %>
+  </br>
+  <%= form.label :state %>
+  <%= form.text_field :state %>
+  </br>
+  <%= form.label :zip %>
+  <%= form.text_field :zip %>
+  </br>
+  <%= form.submit "Search" %>
+<% end %>
