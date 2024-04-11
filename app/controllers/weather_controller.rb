@@ -8,9 +8,7 @@ require 'services/weather_service'
 class WeatherController < ApplicationController
   def index
     # TODO: docs in README.md
-    # TODO: error not clearing out (not resubmitting?)
-
-    if params.key?(:commit)
+    if params.key?('commit')
       if valid_search_params?
         fetch_weather_data
       else

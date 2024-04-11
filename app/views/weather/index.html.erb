@@ -7,23 +7,25 @@
   </br
 <% end %>
 
-<%= form_with url: "/", method: :get do |form| %>
-  <%= form.label :street %>
-  <%= form.text_field :street, { value: params[:street] } %>
-  </br>
-  <%= form.label :city %>
-  <%= form.text_field :city, { value: params[:city] } %>
-  </br>
-  <%= form.label :state %>
-  <%= form.text_field :state, { value: params[:state] } %>
-  </br>
-  <%= form.label :zip %>
-  <%= form.text_field :zip, { value: params[:zip] } %>
-  </br>
-  <%= form.label :units %>
-  <%= form.select :units, { "Fahrenheit" => "fahrenheit", "Celsius" => "celsius", "Kelvin" => "kelvin" }, { selected: params[:units] } %>
-  <%= form.submit "Search" %>
-<% end %>
+<div>
+  <%= form_with method: :get do |form| %>
+    <%= form.label :street %>
+    <%= form.text_field :street, { value: params[:street] } %>
+    </br>
+    <%= form.label :city %>
+    <%= form.text_field :city, { value: params[:city] } %>
+    </br>
+    <%= form.label :state %>
+    <%= form.text_field :state, { value: params[:state] } %>
+    </br>
+    <%= form.label :zip %>
+    <%= form.text_field :zip, { value: params[:zip] } %>
+    </br>
+    <%= form.label :units %>
+    <%= form.select :units, { "Fahrenheit" => "fahrenheit", "Celsius" => "celsius", "Kelvin" => "kelvin" }, { selected: params[:units] } %>
+    <%= form.submit "Search" %>
+  <% end %>
+</div>
 
 <% if @temps %>
   <% if @temps.length.zero? %>
