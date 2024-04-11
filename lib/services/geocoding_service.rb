@@ -22,13 +22,28 @@ class GeocodingService
   # @return [Array<Hash<String, Float>>, Array] List of coordinates with keys for longitude and latitude,
   #   or an empty array if no results were found.
   def coordinates
-    query = URI::HTTPS.build(
-      host: BASE_URL,
-      path: BASE_PATH,
-      query: { street: @street, city: @city, state: @state, zip: @zip, benchmark: 2020, format: 'json' }.to_query
-    )
-    JSON.parse(Net::HTTP.get(query))['result']['addressMatches'].map do |result|
-      { 'latitude' => result['coordinates']['y'], 'longitude' => result['coordinates']['x'] }
+    Rails.cache.fetch(cache_key) do
+      query = URI::HTTPS.build(
+        host: BASE_URL,
+        path: BASE_PATH,
+        query: query_params
+      )
+
+      JSON.parse(Net::HTTP.get(query))['result']['addressMatches'].map do |result|
+        { 'latitude' => result['coordinates']['y'], 'longitude' => result['coordinates']['x'] }
+      end
     end
+  end
+
+  private
+
+  def query_params
+    @query_params ||= {
+      street: @street, city: @city, state: @state, zip: @zip, benchmark: 2020, format: 'json'
+    }.to_query
+  end
+
+  def cache_key
+    "geocoding_service:#{query_params}"
   end
 end

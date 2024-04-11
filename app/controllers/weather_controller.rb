@@ -9,7 +9,6 @@ class WeatherController < ApplicationController
   def search
     # TODO: docs in README.md
     # TODO: caching
-    # TODO: integration test
     # TODO: error not clearing out (not resubmitting?)
 
     if valid_search_params?
