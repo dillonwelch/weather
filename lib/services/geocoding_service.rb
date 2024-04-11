@@ -25,10 +25,11 @@ class GeocodingService
     )
     resp = JSON.parse(Net::HTTP.get(query))
     results = resp["result"]["addressMatches"]
-    coords = []
-    results.each do |result|
-      coords << result["coordinates"] # TODO: use fancy map
+    results.map do |result|
+      {
+        "latitude" => result["coordinates"]["y"],
+        "longitude" => result["coordinates"]["x"]
+      }
     end
-    coords
   end
 end

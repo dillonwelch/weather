@@ -11,8 +11,7 @@ RSpec.describe GeocodingService do
         zip: "10001"
       ).coordinates
 
-      expected = {"x"=>-73.98524258380219, "y"=>40.74865337901453}
-      expect(coords).to eq [expected]
+      expect(coords).to match_array [{ "longitude" => -73.98524258380219, "latitude" => 40.74865337901453 }]
     end
   end
 end
