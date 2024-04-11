@@ -14,7 +14,6 @@ class WeatherController < ApplicationController
     # TODO: integration test
     # TODO: token leak in VCR files
     # TODO: rubocop
-    # TODO: extra temp values are not actually helpful for forecast?
 
     coordinates = GeocodingService.new(
       street: params[:street],
