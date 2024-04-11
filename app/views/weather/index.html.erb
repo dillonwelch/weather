@@ -15,30 +15,34 @@
 <% end %>
 
 <% if @temps %>
-  Results:
-  </br>
-  <% (@temps || []).each do |temp| %>
-    Latitude: <%= temp["latitude"] %>
+  <% if @temps.length.zero? %>
+    No results :(
+  <% else %>
+    Results:
     </br>
-    Longitude: <%= temp["longitude"] %>
-    </br>
-    Current temp is: <%= temp["current"]["current_temp"] %> with a low of <%= temp["current"]["low_temp"] %> and a high of <%= temp["current"]["high_temp"] %>
-    </br>
-    <table>
-      <tr>
-        <th>Time</th>
-        <th>Temp</th>
-        <th>Low</th>
-        <th>High</th>
-      </tr>
-      <% temp["extended"].each do |extended_temp| %>
+    <% @temps.each do |temp| %>
+      Latitude: <%= temp["latitude"] %>
+      </br>
+      Longitude: <%= temp["longitude"] %>
+      </br>
+      Current temp is: <%= temp["current"]["current_temp"] %> with a low of <%= temp["current"]["low_temp"] %> and a high of <%= temp["current"]["high_temp"] %>
+      </br>
+      <table>
         <tr>
-          <th><%= extended_temp["time"] %></th>
-          <th><%= extended_temp["current_temp"] %></th>
-          <th><%= extended_temp["low_temp"] %></th>
-          <th><%= extended_temp["high_temp"] %></th>
+          <th>Time</th>
+          <th>Temp</th>
+          <th>Low</th>
+          <th>High</th>
         </tr>
-      <% end %>
-    </table>
+        <% temp["extended"].each do |extended_temp| %>
+          <tr>
+            <th><%= extended_temp["time"] %></th>
+            <th><%= extended_temp["current_temp"] %></th>
+            <th><%= extended_temp["low_temp"] %></th>
+            <th><%= extended_temp["high_temp"] %></th>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
   <% end %>
 <% end %>

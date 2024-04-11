@@ -3,20 +3,18 @@ require "services/geocoding_service"
 require "services/weather_service"
 
 class WeatherController < ApplicationController
-  def index
-  end
-
   def search
-    # TODO: docs
+    # TODO: docs in README.md
+    #
     # TODO: validate zip / presence of values
     # TODO: options for units
-    # TODO: dropdown for state
-    # TODO: slash search redirect
-    # TODO: no results
     # TODO: error state
     # TODO: cleanup JS
     # TODO: cleanup CSS
     # TODO: caching
+    # TODO: integration test
+    # TODO: token leak in VCR files
+    # TODO: rubocop
 
     coordinates = GeocodingService.new(
       street: params[:street],
