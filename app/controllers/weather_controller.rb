@@ -25,7 +25,7 @@ class WeatherController < ApplicationController
       zip: params[:zip]
     ).coordinates
 
-    @temps = []
+    @temps = [] # TODO: only assume one?
     coords.each do |coord|
       temp_data = { lat: coord["y"], lon: coord["x"] }
 
@@ -44,10 +44,6 @@ class WeatherController < ApplicationController
       @temps << temp_data
     end
 
-    # weather = client.current_weather(units: "imperial", zip: params[:zip])["main"]
-    # @current_temp = weather["temp"]
-    # @low_temp = weather["temp_min"]
-    # @high_temp = weather["temp_max"]
     render "index"
   end
 end
