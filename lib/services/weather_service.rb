@@ -26,7 +26,12 @@ class WeatherService
         units: "imperial"
       }.to_query
     )
-    JSON.parse(Net::HTTP.get(query))["main"]
+    resp = JSON.parse(Net::HTTP.get(query))["main"]
+    {
+      "current_temp" => resp["temp"],
+      "low_temp" => resp["temp_min"],
+      "high_temp" => resp["temp_max"]
+    }
   end
 
   # Queries the API to determine the weather forecast for the next 5 days.
