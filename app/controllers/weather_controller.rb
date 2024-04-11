@@ -7,6 +7,7 @@ class WeatherController < ApplicationController
     # TODO: validate zip
     # TODO: options for units
     # TODO: dropdown for state
+    # TODO: remove gem
     puts params
     client = OpenWeather::Client.new(
       api_key: ENV['OPEN_WEATHER_API_KEY']
@@ -27,10 +28,17 @@ class WeatherController < ApplicationController
     results.each do |result|
       coords << result["coordinates"] # TODO: use fancy map
     end
-    puts coords
 
-    query = URI::HTTPS.build(host: "api.openweathermap.org", path: "/data/2.5/weather", query: { lat: lat, lon: lon, appid: ENV['OPEN_
-WEATHER_API_KEY']}.to_query)
+    @temps = []
+    coords.each do |coord|
+      query = URI::HTTPS.build(
+        host: "api.openweathermap.org",
+        path: "/data/2.5/weather",
+        query: { lat: coord["y"], lon: coord["x"], appid: ENV['OPEN_WEATHER_API_KEY'], units: "imperial"}.to_query,
+      )
+      resp = JSON.parse(Net::HTTP.get(query))["main"]
+      @temps << { coords: coord, current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"]}
+    end
 
     # weather = client.current_weather(units: "imperial", zip: params[:zip])["main"]
     # @current_temp = weather["temp"]

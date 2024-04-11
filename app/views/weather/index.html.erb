@@ -14,4 +14,11 @@
   <%= form.submit "Search" %>
 <% end %>
 
-Current temp is: <%= @current_temp %> with a low of <%= @low_temp %> and a high of <%= @high_temp %>
+Temps:
+</br>
+<% @temps.each do |temp| %>
+  Location: <%= temp[:coords] %>
+  </br>
+  Current temp is: <%= temp[:current_temp] %> with a low of <%= temp[:low_temp] %> and a high of <%= temp[:high_temp] %>
+  </br>
+<% end %>
