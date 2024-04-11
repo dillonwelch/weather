@@ -23,6 +23,7 @@ class WeatherController < ApplicationController
       format: "json"
     }.to_query)
     resp = JSON.parse(Net::HTTP.get(query))
+    puts resp
     results = resp["result"]["addressMatches"]
     coords = []
     results.each do |result|
