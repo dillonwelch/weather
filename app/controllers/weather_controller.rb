@@ -16,6 +16,8 @@ class WeatherController < ApplicationController
     # TODO: token leak in VCR files
     # TODO: rubocop
     # TODO: rerecord all cassettes when done / set time const
+    # TODO: extra temp values are not actually helpful for forecast?
+    # TODO: need to output timezones
 
     coordinates = GeocodingService.new(
       street: params[:street],

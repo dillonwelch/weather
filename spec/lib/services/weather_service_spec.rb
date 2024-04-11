@@ -70,6 +70,10 @@ RSpec.describe WeatherService do
           expect(result.first).to eql(
             "current_temp" => 50.13, "low_temp" => 50.13, "high_temp" => 52.97, "time" => "2024-04-11 09:00:00"
           )
+          expect(result.last).to eql(
+            "current_temp" => 56.12, "low_temp" => 56.12, "high_temp" => 56.12, "time" => "2024-04-16 06:00:00"
+          )
+          expect(result.length).to eql 40
         end
       end
     end
