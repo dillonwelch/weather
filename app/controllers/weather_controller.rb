@@ -10,8 +10,6 @@ class WeatherController < ApplicationController
     # TODO: docs in README.md
     # TODO: caching
     # TODO: integration test
-    # TODO: update token locally and disable old one
-    # TODO: Cleanup and document gems
     # TODO: error not clearing out (not resubmitting?)
 
     if valid_search_params?
