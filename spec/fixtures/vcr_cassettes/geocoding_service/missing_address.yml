@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://geocoding.geo.census.gov/geocoder/locations/address?benchmark=2020&city=New%20York&format=json&state=NY&street=I%20do%20not%20exist&zip=12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - geocoding.geo.census.gov
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Thu, 11 Apr 2024 06:39:09 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '279'
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - Deny
+      Cache-Control:
+      - private, no-store
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Vary:
+      - Origin
+      Set-Cookie:
+      - TS0193e6a1=01283c52a4b4668fbec95cd793d9d1c6f5162ddbbbf5457fbe26e5d6bb79b0316965701d8a68061c3088ae4f4902344b87c8c5aa45;
+        Path=/; Domain=.geocoding.geo.census.gov;
+    body:
+      encoding: UTF-8
+      string: '{"result":{"input":{"address":{"zip":"12345","city":"New York","street":"I
+        do not exist","state":"NY"},"benchmark":{"isDefault":false,"benchmarkDescription":"Public
+        Address Ranges - Census 2020 Benchmark","id":"2020","benchmarkName":"Public_AR_Census2020"}},"addressMatches":[]}}'
+  recorded_at: Thu, 11 Apr 2024 06:39:09 GMT
+recorded_with: VCR 6.2.0
