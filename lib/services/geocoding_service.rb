@@ -25,22 +25,10 @@ class GeocodingService
     query = URI::HTTPS.build(
       host: BASE_URL,
       path: BASE_PATH,
-      query: {
-        street: @street,
-        city: @city,
-        state: @state,
-        zip: @zip,
-        benchmark: 2020,
-        format: 'json'
-      }.to_query
+      query: { street: @street, city: @city, state: @state, zip: @zip, benchmark: 2020, format: 'json' }.to_query
     )
-    resp = JSON.parse(Net::HTTP.get(query))
-    results = resp['result']['addressMatches']
-    results.map do |result|
-      {
-        'latitude' => result['coordinates']['y'],
-        'longitude' => result['coordinates']['x']
-      }
+    JSON.parse(Net::HTTP.get(query))['result']['addressMatches'].map do |result|
+      { 'latitude' => result['coordinates']['y'], 'longitude' => result['coordinates']['x'] }
     end
   end
 end

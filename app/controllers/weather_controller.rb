@@ -12,7 +12,7 @@ class WeatherController < ApplicationController
     # TODO: caching
     # TODO: integration test
     # TODO: update token locally and disable old one
-    # TODO: rubocop
+    # TODO: rubocop for this controller
     # TODO: Cleanup and document gems
     # TODO: error not clearing out (not resubmitting?)
 
