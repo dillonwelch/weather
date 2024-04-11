@@ -2,8 +2,8 @@
 
 # Uses the US Census Geocoding API to turn an address into coordinates.
 class GeocodingService
-  BASE_URL = "geocoding.geo.census.gov"
-  BASE_PATH = "/geocoder/locations/address"
+  BASE_URL = 'geocoding.geo.census.gov'
+  BASE_PATH = '/geocoder/locations/address'
 
   # @param street [String] Street portion of the address.
   # @param city [String] City portion of the address.
@@ -31,15 +31,15 @@ class GeocodingService
         state: @state,
         zip: @zip,
         benchmark: 2020,
-        format: "json"
+        format: 'json'
       }.to_query
     )
     resp = JSON.parse(Net::HTTP.get(query))
-    results = resp["result"]["addressMatches"]
+    results = resp['result']['addressMatches']
     results.map do |result|
       {
-        "latitude" => result["coordinates"]["y"],
-        "longitude" => result["coordinates"]["x"]
+        'latitude' => result['coordinates']['y'],
+        'longitude' => result['coordinates']['x']
       }
     end
   end

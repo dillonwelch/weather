@@ -2,13 +2,13 @@
 
 # Uses the OpenWeatherMap API to fetch either the current weather or the forecasted weather for a set of coordinates.
 class WeatherService
-  BASE_URL = "api.openweathermap.org"
-  CURRENT_WEATHER_PATH = "/data/2.5/weather"
-  WEATHER_FORECAST_PATH = "/data/2.5/forecast"
+  BASE_URL = 'api.openweathermap.org'
+  CURRENT_WEATHER_PATH = '/data/2.5/weather'
+  WEATHER_FORECAST_PATH = '/data/2.5/forecast'
   UNITS_MAPPING = {
-    "fahrenheit" => "imperial",
-    "celsius" => "metric",
-    "kelvin" => "standard"
+    'fahrenheit' => 'imperial',
+    'celsius' => 'metric',
+    'kelvin' => 'standard'
   }.freeze
 
   # @param latitude [Float] Latitude value of the coordinate.
@@ -32,11 +32,11 @@ class WeatherService
         units: UNITS_MAPPING[@units]
       }.to_query
     )
-    resp = JSON.parse(Net::HTTP.get(query))["main"]
+    resp = JSON.parse(Net::HTTP.get(query))['main']
     {
-      "current_temp" => resp["temp"],
-      "low_temp" => resp["temp_min"],
-      "high_temp" => resp["temp_max"]
+      'current_temp' => resp['temp'],
+      'low_temp' => resp['temp_min'],
+      'high_temp' => resp['temp_max']
     }
   end
 
@@ -54,10 +54,10 @@ class WeatherService
       }.to_query
     )
 
-    JSON.parse(Net::HTTP.get(query))["list"].map do |resp|
+    JSON.parse(Net::HTTP.get(query))['list'].map do |resp|
       {
-        "current_temp" => resp["main"]["temp"],
-        "time" => resp["dt_txt"]
+        'current_temp' => resp['main']['temp'],
+        'time' => resp['dt_txt']
       }
     end
   end
