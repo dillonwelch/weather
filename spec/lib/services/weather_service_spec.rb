@@ -60,7 +60,7 @@ RSpec.describe WeatherService do
   describe "#weather_forecast" do
     describe "happy path" do
       it "fetches the weather forecast or a coordinate" do
-        VCR.use_cassette "weather_service/weather_forecast/happy_path", allow_unused_http_interactions: false, record: :new_episodes do
+        VCR.use_cassette "weather_service/weather_forecast/happy_path_fahrenheit", allow_unused_http_interactions: false, record: :new_episodes do
           result = WeatherService.new(
             latitude: 40.74865337901453,
             longitude: -73.98524258380219,
@@ -68,7 +68,7 @@ RSpec.describe WeatherService do
           ).weather_forecast
 
           expect(result.first).to eql(
-            "current_temp" => 50.2, "low_temp" => 50.2, "high_temp" => 52.97, "time" => "2024-04-11 09:00:00"
+            "current_temp" => 50.13, "low_temp" => 50.13, "high_temp" => 52.97, "time" => "2024-04-11 09:00:00"
           )
         end
       end

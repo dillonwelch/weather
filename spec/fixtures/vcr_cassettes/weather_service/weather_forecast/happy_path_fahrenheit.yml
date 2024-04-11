@@ -23,11 +23,11 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Thu, 11 Apr 2024 07:34:48 GMT
+      - Thu, 11 Apr 2024 08:18:24 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '16202'
+      - '16213'
       Connection:
       - keep-alive
       X-Cache-Key:
@@ -40,11 +40,11 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"cod":"200","message":0,"cnt":40,"list":[{"dt":1712826000,"main":{"temp":50.2,"feels_like":48.87,"temp_min":50.2,"temp_max":52.97,"pressure":1017,"sea_level":1017,"grnd_level":1013,"humidity":84,"temp_kf":-1.54},"weather":[{"id":804,"main":"Clouds","description":"overcast
+      string: '{"cod":"200","message":0,"cnt":40,"list":[{"dt":1712826000,"main":{"temp":50.13,"feels_like":48.83,"temp_min":50.13,"temp_max":52.97,"pressure":1017,"sea_level":1017,"grnd_level":1013,"humidity":85,"temp_kf":-1.58},"weather":[{"id":804,"main":"Clouds","description":"overcast
         clouds","icon":"04n"}],"clouds":{"all":100},"wind":{"speed":7.45,"deg":67,"gust":10.04},"visibility":10000,"pop":0,"sys":{"pod":"n"},"dt_txt":"2024-04-11
-        09:00:00"},{"dt":1712836800,"main":{"temp":51.19,"feels_like":50.05,"temp_min":51.19,"temp_max":53.19,"pressure":1016,"sea_level":1016,"grnd_level":1013,"humidity":86,"temp_kf":-1.11},"weather":[{"id":500,"main":"Rain","description":"light
+        09:00:00"},{"dt":1712836800,"main":{"temp":51.15,"feels_like":50.02,"temp_min":51.15,"temp_max":53.19,"pressure":1016,"sea_level":1016,"grnd_level":1013,"humidity":86,"temp_kf":-1.13},"weather":[{"id":500,"main":"Rain","description":"light
         rain","icon":"10d"}],"clouds":{"all":100},"wind":{"speed":7.72,"deg":95,"gust":11.21},"visibility":10000,"pop":0.2,"rain":{"3h":0.31},"sys":{"pod":"d"},"dt_txt":"2024-04-11
-        12:00:00"},{"dt":1712847600,"main":{"temp":53.6,"feels_like":52.61,"temp_min":53.6,"temp_max":55.31,"pressure":1016,"sea_level":1016,"grnd_level":1013,"humidity":84,"temp_kf":-0.95},"weather":[{"id":500,"main":"Rain","description":"light
+        12:00:00"},{"dt":1712847600,"main":{"temp":53.58,"feels_like":52.59,"temp_min":53.58,"temp_max":55.31,"pressure":1016,"sea_level":1016,"grnd_level":1013,"humidity":84,"temp_kf":-0.96},"weather":[{"id":500,"main":"Rain","description":"light
         rain","icon":"10d"}],"clouds":{"all":100},"wind":{"speed":8.66,"deg":111,"gust":11.74},"visibility":10000,"pop":1,"rain":{"3h":0.88},"sys":{"pod":"d"},"dt_txt":"2024-04-11
         15:00:00"},{"dt":1712858400,"main":{"temp":61.16,"feels_like":60.4,"temp_min":61.16,"temp_max":61.16,"pressure":1013,"sea_level":1013,"grnd_level":1011,"humidity":73,"temp_kf":0},"weather":[{"id":804,"main":"Clouds","description":"overcast
         clouds","icon":"04d"}],"clouds":{"all":100},"wind":{"speed":15.03,"deg":155,"gust":28.14},"visibility":10000,"pop":0.8,"sys":{"pod":"d"},"dt_txt":"2024-04-11
@@ -120,6 +120,6 @@ http_interactions:
         clouds","icon":"04n"}],"clouds":{"all":51},"wind":{"speed":5.88,"deg":354,"gust":13.04},"visibility":10000,"pop":0,"sys":{"pod":"n"},"dt_txt":"2024-04-16
         03:00:00"},{"dt":1713247200,"main":{"temp":56.12,"feels_like":53.78,"temp_min":56.12,"temp_max":56.12,"pressure":1020,"sea_level":1020,"grnd_level":1018,"humidity":50,"temp_kf":0},"weather":[{"id":803,"main":"Clouds","description":"broken
         clouds","icon":"04n"}],"clouds":{"all":62},"wind":{"speed":3.04,"deg":351,"gust":3.31},"visibility":10000,"pop":0,"sys":{"pod":"n"},"dt_txt":"2024-04-16
-        06:00:00"}],"city":{"id":5106184,"name":"Weehawken","coord":{"lat":40.7487,"lon":-73.9852},"country":"US","population":14104,"timezone":-14400,"sunrise":1712830942,"sunset":1712878252}}'
-  recorded_at: Thu, 11 Apr 2024 07:34:48 GMT
+        06:00:00"}],"city":{"id":5125125,"name":"Long Island City","coord":{"lat":40.7487,"lon":-73.9852},"country":"US","population":25595,"timezone":-14400,"sunrise":1712830942,"sunset":1712878252}}'
+  recorded_at: Thu, 11 Apr 2024 08:18:24 GMT
 recorded_with: VCR 6.2.0
