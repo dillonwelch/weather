@@ -9,7 +9,7 @@ RSpec.describe WeatherService do
     describe 'happy path' do
       it 'fetches the current weather for a coordinate in fahrenheit' do
         VCR.use_cassette 'weather_service/current_weather/happy_path_fahrenheit', vcr_params do
-          result = WeatherService.new(
+          result = described_class.new(
             latitude: 40.74865337901453,
             longitude: -73.98524258380219,
             units: 'fahrenheit'
@@ -21,7 +21,7 @@ RSpec.describe WeatherService do
 
       it 'fetches the current weather for a coordinate in celsius' do
         VCR.use_cassette 'weather_service/current_weather/happy_path_celsius', vcr_params do
-          result = WeatherService.new(
+          result = described_class.new(
             latitude: 40.74865337901453,
             longitude: -73.98524258380219,
             units: 'celsius'
@@ -33,7 +33,7 @@ RSpec.describe WeatherService do
 
       it 'fetches the current weather for a coordinate in kelvin' do
         VCR.use_cassette 'weather_service/current_weather/happy_path_kelvin', vcr_params do
-          result = WeatherService.new(
+          result = described_class.new(
             latitude: 40.74865337901453,
             longitude: -73.98524258380219,
             units: 'kelvin'
@@ -49,7 +49,7 @@ RSpec.describe WeatherService do
     describe 'happy path' do
       it 'fetches the weather forecast or a coordinate in fahrenheit' do
         VCR.use_cassette 'weather_service/weather_forecast/happy_path_fahrenheit', vcr_params do
-          result = WeatherService.new(
+          result = described_class.new(
             latitude: 40.74865337901453,
             longitude: -73.98524258380219,
             units: 'fahrenheit'
@@ -57,13 +57,13 @@ RSpec.describe WeatherService do
 
           expect(result.first).to eql('current_temp' => 51.1, 'time' => '2024-04-11 12:00:00')
           expect(result.last).to eql('current_temp' => 55.04, 'time' => '2024-04-16 09:00:00')
-          expect(result.length).to eql 40
+          expect(result.length).to be 40
         end
       end
 
       it 'fetches the weather forecast or a coordinate in celsius' do
         VCR.use_cassette 'weather_service/weather_forecast/happy_path_celsius', vcr_params do
-          result = WeatherService.new(
+          result = described_class.new(
             latitude: 40.74865337901453,
             longitude: -73.98524258380219,
             units: 'celsius'
@@ -71,13 +71,13 @@ RSpec.describe WeatherService do
 
           expect(result.first).to eql('current_temp' => 10.61, 'time' => '2024-04-11 12:00:00')
           expect(result.last).to eql('current_temp' => 12.8, 'time' => '2024-04-16 09:00:00')
-          expect(result.length).to eql 40
+          expect(result.length).to be 40
         end
       end
 
       it 'fetches the weather forecast or a coordinate in kelvin' do
         VCR.use_cassette 'weather_service/weather_forecast/happy_path_kelvin', vcr_params do
-          result = WeatherService.new(
+          result = described_class.new(
             latitude: 40.74865337901453,
             longitude: -73.98524258380219,
             units: 'kelvin'
@@ -85,7 +85,7 @@ RSpec.describe WeatherService do
 
           expect(result.first).to eql('current_temp' => 283.76, 'time' => '2024-04-11 12:00:00')
           expect(result.last).to eql('current_temp' => 285.95, 'time' => '2024-04-16 09:00:00')
-          expect(result.length).to eql 40
+          expect(result.length).to be 40
         end
       end
     end

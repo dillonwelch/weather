@@ -9,14 +9,14 @@ RSpec.describe GeocodingService do
     describe 'happy path' do
       it 'fetches coordinates for an address' do
         VCR.use_cassette 'geocoding_service/happy_path', vcr_params do
-          coords = GeocodingService.new(
+          coords = described_class.new(
             street: '20 W 34th St.',
             city: 'New York',
             state: 'NY',
             zip: '10001'
           ).coordinates
 
-          expect(coords).to match_array [{ 'longitude' => -73.98524258380219, 'latitude' => 40.74865337901453 }]
+          expect(coords).to contain_exactly({ 'longitude' => -73.98524258380219, 'latitude' => 40.74865337901453 })
         end
       end
     end
@@ -24,14 +24,14 @@ RSpec.describe GeocodingService do
     describe 'missing address' do
       it 'returns an empty array' do
         VCR.use_cassette 'geocoding_service/missing_address', vcr_params do
-          coords = GeocodingService.new(
+          coords = described_class.new(
             street: 'I do not exist',
             city: 'New York',
             state: 'NY',
             zip: '12345'
           ).coordinates
 
-          expect(coords).to match_array []
+          expect(coords).to be_empty
         end
       end
     end
