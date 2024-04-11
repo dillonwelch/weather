@@ -8,7 +8,7 @@ class WeatherController < ApplicationController
     # TODO: options for units
     # TODO: dropdown for state
     # TODO: remove gem
-    puts params
+    # TODO: slash search redirect
     client = OpenWeather::Client.new(
       api_key: ENV['OPEN_WEATHER_API_KEY']
     )
@@ -39,6 +39,16 @@ class WeatherController < ApplicationController
       )
       resp = JSON.parse(Net::HTTP.get(query))["main"]
       @temps << { coords: coord, current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"]}
+      query = URI::HTTPS.build(
+        host: "api.openweathermap.org",
+        path: "/data/2.5/forecast",
+        query: { lat: coord["y"], lon: coord["x"], appid: ENV['OPEN_WEATHER_API_KEY'], units: "imperial"}.to_query,
+      )
+      resps = JSON.parse(Net::HTTP.get(query))["list"]
+      resps.each do |bleh|
+        resp = bleh["main"]
+        @temps <<{ coords: coord, current_temp: resp["temp"], low_temp: resp["temp_min"], high_temp: resp["temp_max"], time: bleh["dt_txt"]}
+      end
     end
 
     # weather = client.current_weather(units: "imperial", zip: params[:zip])["main"]

@@ -21,6 +21,8 @@ Temps:
 <% (@temps || []).each do |temp| %>
   Location: <%= temp[:coords] %>
   </br>
+  Time: <%= temp[:time] %>
+  </br>
   Current temp is: <%= temp[:current_temp] %> with a low of <%= temp[:low_temp] %> and a high of <%= temp[:high_temp] %>
   </br>
 <% end %>
