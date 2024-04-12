@@ -7,7 +7,6 @@ require 'services/weather_service'
 # Controller for UI
 class WeatherController < ApplicationController
   def index
-    # TODO: docs in README.md
     if params.key?('commit')
       if valid_search_params?
         fetch_weather_data
@@ -22,7 +21,7 @@ class WeatherController < ApplicationController
   private
 
   def valid_search_params?
-    params[:zip].present? || (params[:city].present? && params[:state].present?)
+    params[:street].present? && (params[:zip].present? || (params[:city].present? && params[:state].present?))
   end
 
   def fetch_weather_data

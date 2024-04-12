@@ -1,2 +1,2 @@
 en:
-  search_error: Either the ZIP Code or both City and State must be specified.
+  search_error: A Street must be specified and either the ZIP Code or both City and State must be specified.

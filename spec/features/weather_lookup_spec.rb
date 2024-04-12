@@ -10,7 +10,9 @@ RSpec.describe 'Weather Lookup' do
 
     click_on 'Search'
 
-    expect(page).to have_content 'ERROR: Either the ZIP Code or both City and State must be specified.'
+    expect(page).to have_content(
+      'ERROR: A Street must be specified and either the ZIP Code or both City and State must be specified.'
+    )
   end
 
   it 'User looks up the weather with all required data' do
